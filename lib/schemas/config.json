@@ -75,10 +75,6 @@
           "type": "string",
           "description": "Define the font size for all the widgets. You can use any css unit. It can particulary be usefull if you have displays with different pixel density and different scaling factor in which case you can set a value with a relative viewport unit like 1vh. Be careful to not set a value too high as it could break all simple-bar interface as this setting is used for every texts"
         },
-        "yabaiPath": {
-          "type": "string",
-          "description": "Determine the path to the yabai binary"
-        },
         "aerospacePath": {
           "type": "string",
           "description": "Determine the path to the aerospace binary"
@@ -113,10 +109,6 @@
         "serverSocketPort": {
           "type": "number",
           "description": "Determine the port on which the websockets will be opened. Check you simple-bar-server config file to get the right port if you changed it"
-        },
-        "yabaiServerRefresh": {
-          "type": "boolean",
-          "description": "Enable websocket connection to the server in yabai spaces & process widgets. You must install and launch simple-bar-server before activating this setting"
         },
         "aerospaceServerRefresh": {
           "type": "boolean",
@@ -218,10 +210,6 @@
           "type": "boolean",
           "description": "The process widget will be centered. Do not activate it if you run simple-bar on a mac with a notch"
         },
-        "showCurrentSpaceMode": {
-          "type": "boolean",
-          "description": "[yabai] Show the current space yabai mode on the left of the processes"
-        },
         "hideWindowTitle": {
           "type": "boolean",
           "description": "Hide window titles"
@@ -233,18 +221,6 @@
         "expandAllProcesses": {
           "type": "boolean",
           "description": "All processes are revealed"
-        },
-        "displaySkhdMode": {
-          "type": "boolean",
-          "description": "[yabai] If the current space is in stack mode, each process will have its stack index displayed"
-        },
-        "displayStackIndex": {
-          "type": "boolean",
-          "description": "[yabai] Show stack index only on focused process"
-        },
-        "displayOnlyCurrentStack": {
-          "type": "boolean",
-          "description": "[yabai] Show stack-index only for focused process"
         }
       }
     },
@@ -279,14 +255,6 @@
         "hideDuplicateAppsInSpaces": {
           "type": "boolean",
           "description": "Each instance of an app is displayed separately in their respective space. You can merge all duplicates with this setting"
-        },
-        "displayStickyWindowsSeparately": {
-          "type": "boolean",
-          "description": "[yabai] Sticky windows are displayed on each screens by default. You can choose to displayed only in one place thanks to this settings (at the left of all the spaces)"
-        },
-        "hideCreateSpaceButton": {
-          "type": "boolean",
-          "description": "[yabai] Simply hide the \"+\" button (which is only visible if you have SIP disabled)"
         },
         "hideEmptySpaces": {
           "type": "boolean",
