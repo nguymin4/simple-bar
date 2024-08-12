@@ -10,8 +10,6 @@ if [ $? -eq 1 ]; then
   exit 0
 fi
 
-shadow_enabled=$($yabai_path -m config window_shadow)
-
 spaces=$($yabai_path -m query --spaces)
 windows=$($yabai_path -m query --windows)
 displays=$($yabai_path -m query --displays)
@@ -73,7 +71,6 @@ echo $(cat <<-EOF
     "spaces": $spaces,
     "windows": $windows,
     "displays": $displays,
-    "shadow": "$shadow_enabled",
     "skhdMode": $skhd_mode
   }
 EOF
