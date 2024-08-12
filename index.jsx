@@ -95,7 +95,7 @@ function render({ output, error }) {
   // TODO: extract spaces info from aerospace
   const data = {}
 
-  const { displays, shadow, skhdMode, SIP, spaces, windows } = data;
+  const { displays, shadow, skhdMode, spaces, windows } = data;
 
   const classes = Utils.classNames(baseClasses, {
     "simple-bar--no-shadow": shadow !== "on",
@@ -107,7 +107,6 @@ function render({ output, error }) {
     <SimpleBarContextProvider
       initialSettings={settings}
       displays={displays}
-      SIPDisabled={false}
     >
       <div className={classes}>
         <SideIcon.Component />

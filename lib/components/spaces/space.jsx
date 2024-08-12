@@ -1,6 +1,5 @@
 import * as Uebersicht from "uebersicht";
 import OpenedApps from "./opened-apps.jsx";
-import SpaceOptions from "./space-options.jsx";
 import { useYabaiContext } from "../yabai-context.jsx";
 import { useSimpleBarContext } from "../simple-bar-context.jsx";
 import * as Utils from "../../utils";
@@ -15,7 +14,7 @@ export default function Space({
   lastOfSpace,
 }) {
   const { windows } = useYabaiContext();
-  const { SIPDisabled, settings } = useSimpleBarContext();
+  const { settings } = useSimpleBarContext();
   const { spacesDisplay } = settings;
   const {
     displayAllSpacesOnAllScreens,
@@ -74,11 +73,6 @@ export default function Space({
       return;
     }
     if (hasFocus || __legacyHasFocus) return;
-    if (SIPDisabled && !spacesDisplay.switchSpacesWithoutYabai) {
-      Yabai.goToSpace(index);
-      Utils.clickEffect(e);
-      return;
-    }
     Utils.switchSpace(currentSpaceIndex, index);
     Utils.clickEffect(e);
   };
@@ -153,7 +147,6 @@ export default function Space({
           />
           <OpenedApps apps={displayStickyWindowsSeparately ? apps : allApps} />
         </button>
-        {SIPDisabled && <SpaceOptions index={index} setHovered={setHovered} />}
       </div>
     </React.Fragment>
   );
