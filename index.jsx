@@ -76,6 +76,7 @@ function render({ output, error }) {
     "simple-bar--widgets-background-color-as-foreground":
       settings.global.widgetsBackgroundColorAsForeground,
     "simple-bar--process-aligned-to-left": !settings.global.centered,
+    "simple-bar--no-shadow": true,
   });
 
   if (error) {
@@ -95,11 +96,7 @@ function render({ output, error }) {
   // TODO: extract spaces info from aerospace
   const data = {}
 
-  const { displays, shadow, skhdMode, spaces, windows } = data;
-
-  const classes = Utils.classNames(baseClasses, {
-    "simple-bar--no-shadow": shadow !== "on",
-  });
+  const { displays, skhdMode, spaces, windows } = data;
 
   Utils.handleBarFocus();
 
@@ -108,7 +105,7 @@ function render({ output, error }) {
       initialSettings={settings}
       displays={displays}
     >
-      <div className={classes}>
+      <div className={baseClasses}>
         <SideIcon.Component />
         {/* <YabaiContextProvider */}
         {/*   spaces={spaces} */}
