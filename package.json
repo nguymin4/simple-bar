@@ -2,7 +2,7 @@
   "name": "simple-bar",
   "licence": "MIT",
   "version": "1.0.0",
-  "description": "A yabai status bar widget for Übersicht.",
+  "description": "A AeroSpace status bar widget for Übersicht.",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx"
   },

@@ -2,13 +2,12 @@
 
 ## What do I need to know to help?
 
-If you are looking to help to with a code contribution our project uses **React** in a mac os application names **Übersicht**. It is build on top of **yabai**. If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/Jean-Tinland/simple-bar/issues).
+If you are looking to help to with a code contribution our project uses **React** in a mac os application names **Übersicht**. If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/Jean-Tinland/simple-bar/issues).
 
 If you are interested in making a code contribution and would like to learn more about the technologies that we use, check out the list below.
 
 - [React documentation](https://react.dev/learn)
 - [Übersicht documentation](https://github.com/felixhageloh/uebersicht#%C3%BCbersicht)
-- [yabai documentation](https://github.com/koekeishiya/yabai)
 
 ## Coding style conventions
 

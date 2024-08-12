@@ -5,7 +5,6 @@ const { React } = Uebersicht;
 // Create a context with default values
 const SimpleBarContext = React.createContext({
   display: 1,
-  SIPDisabled: false,
   settings: {},
   setSettings: () => {},
 });
@@ -32,7 +31,6 @@ export function useSimpleBarContext() {
 export default function SimpleBarContextProvider({
   initialSettings,
   displays,
-  SIPDisabled,
   children,
 }) {
   const [settings, setSettings] = React.useState(initialSettings);
@@ -50,7 +48,7 @@ export default function SimpleBarContextProvider({
 
   // Check if the built-in Retina Display is present in the current displays
   const hasBuiltInRetina = currentDisplays?.some(
-    (d) => d["monitor-name"] === "Built-in Retina Display",
+    (d) => d["monitor-name"] === "Built-in Retina Display"
   );
 
   // Adjust displayId if the Retina screen is missing when using AeroSpace
@@ -90,7 +88,6 @@ export default function SimpleBarContextProvider({
     <SimpleBarContext.Provider
       value={{
         displayIndex,
-        SIPDisabled,
         settings,
         setSettings,
         displays: currentDisplays,
