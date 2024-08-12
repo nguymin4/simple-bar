@@ -1,12 +1,6 @@
-# Store the first argument passed to the script in the variable aerospace_path
-aerospace_path=$1
+aerospace_path=${1:-'/opt/homebrew/bin/aerospace'}
 
-# Get the status of System Integrity Protection (SIP) and store it in the variable SIP
-SIP=$(csrutil status)
-
-# List monitors using the aerospace tool, format the output as JSON, and store it in the variable displays
-# Redirect any error output to /dev/null
-displays=$($aerospace_path list-monitors --json --format "%{monitor-id} %{monitor-name} %{monitor-appkit-nsscreen-screens-id}" 2> /dev/null)
+pgrep -x AeroSpace > /dev/null
 
 # Check if the previous command failed (exit status 1)
 if [ $? -eq 1 ]; then
@@ -15,12 +9,22 @@ if [ $? -eq 1 ]; then
   exit 0
 fi
 
-# Print a JSON object containing the displays information, SIP status, and a shadow property set to true
-echo $(cat <<-EOF
+spaces=$($aerospace_path list-workspaces --all | tr '\n' ',' | xargs)
+current_space=$($aerospace_path list-workspaces --focused | head -n1)
+focused_window=$($aerospace_path list-windows --focused \
+  --format '{"windowId": "%{window-id}", "appName": "%{app-name}", "workspace": %{workspace} }' 2>/dev/null
+)
+
+# shellcheck disable=SC2005
+echo "$(cat <<-EOF
   {
-    "displays": $displays,
-    "SIP": "$SIP",
-    "shadow": true
+    "spaces": [${spaces%?}],
+    "currentSpace": $current_space,
+    "focusedWindow": ${focused_window:-"{}"}
   }
 EOF
-)
+)" | \
+  # removes invisible U+200E Left-To-Right Mark character
+  sed "s/\xe2\x80\x8e//g" | \
+  # removes newlines from output (handling Google Chrome JSON parse error caused by "search in page")
+  tr -d '\n'
