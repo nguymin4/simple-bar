@@ -7,7 +7,6 @@ const { React } = Uebersicht;
 // Create a context with default values
 const SimpleBarContext = React.createContext({
   display: 1,
-  SIPDisabled: false,
   settings: {},
   setSettings: () => {},
 });
@@ -34,7 +33,6 @@ export function useSimpleBarContext() {
 export default function SimpleBarContextProvider({
   initialSettings,
   displays,
-  SIPDisabled,
   children,
 }) {
   const [settings, setSettings] = React.useState(initialSettings);
@@ -67,7 +65,7 @@ export default function SimpleBarContextProvider({
   const displayId = parseInt(window.location.pathname.replace("/", ""), 10);
 
   // Check if the built-in Retina Display is present in the current displays
-  const hasBuiltInRetina = currentDisplays.some(
+  const hasBuiltInRetina = currentDisplays?.some(
     (d) => d["monitor-name"] === "Built-in Retina Display"
   );
 
@@ -108,7 +106,6 @@ export default function SimpleBarContextProvider({
     <SimpleBarContext.Provider
       value={{
         displayIndex,
-        SIPDisabled,
         settings,
         setSettings,
         displays: currentDisplays,
