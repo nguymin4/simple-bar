@@ -1,12 +1,9 @@
 import * as Uebersicht from "uebersicht";
 import Space from "./space.jsx";
 import Stickies from "./stickies.jsx";
-import * as Icons from "../icons/icons.jsx";
-import { SuspenseIcon } from "../icons/icon.jsx";
 import { useYabaiContext } from "../yabai-context.jsx";
 import { useSimpleBarContext } from "../simple-bar-context.jsx";
 import * as Utils from "../../utils";
-import * as Yabai from "../../yabai";
 
 export { spacesStyles as styles } from "../../styles/components/spaces/spaces";
 
@@ -14,13 +11,12 @@ const { React } = Uebersicht;
 
 export const Component = React.memo(() => {
   const { spaces, windows } = useYabaiContext();
-  const { SIPDisabled, displayIndex, settings } = useSimpleBarContext();
+  const { displayIndex, settings } = useSimpleBarContext();
   const { spacesDisplay, process } = settings;
   const {
     displayStickyWindowsSeparately,
     spacesExclusions,
     exclusionsAsRegex,
-    hideCreateSpaceButton,
     showOnDisplay,
   } = spacesDisplay;
   const visible = Utils.isVisibleOnDisplay(displayIndex, showOnDisplay);
@@ -45,11 +41,6 @@ export const Component = React.memo(() => {
 
   return displays.map((display, i) => {
     if (display !== displayIndex) return null;
-
-    const onClick = async (e) => {
-      Utils.clickEffect(e);
-      await Yabai.createSpace(displayIndex);
-    };
 
     return (
       <div key={i} className="spaces">
@@ -78,15 +69,7 @@ export const Component = React.memo(() => {
             />
           );
         })}
-        {SIPDisabled && !hideCreateSpaceButton ? (
-          <button className="spaces__add" onClick={onClick}>
-            <SuspenseIcon>
-              <Icons.Add />
-            </SuspenseIcon>
-          </button>
-        ) : (
-          isProcessVisible && <div className="spaces__end-separator" />
-        )}
+        {isProcessVisible && <div className="spaces__end-separator" />}
       </div>
     );
   });

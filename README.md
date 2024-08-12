@@ -22,7 +22,6 @@ Among the principal features of `simple-bar`, you'll find:
 - **Extensible** themes system with 3 theme behaviors: **dark**, **light**, or **system**
 - Numerous customization options (try them out in settings)
 - A handfull selection of widgets
-- Other features available only with SIP disabled and yabai scripting addition installed (**navigate to workspace**, **create new workspace on "+" click**, **move or destroy workspace on space hover**)
 
 [See all features in documentation](https://www.jeantinland.com/toolbox/simple-bar/documentation/features/).
 
