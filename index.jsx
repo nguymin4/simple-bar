@@ -27,19 +27,12 @@ const refreshFrequency = false;
 
 const settings = Settings.get();
 const {
-  yabaiPath = "/usr/local/bin/yabai",
+  aerospacePath = "/opt/homebrew/bin/aerospace",
   shell,
-  enableServer,
-  yabaiServerRefresh,
 } = settings.global;
-const { hideWindowTitle, displayOnlyIcon, displaySkhdMode } = settings.process;
 
-const disableSignals = enableServer && yabaiServerRefresh;
-const enableTitleChangedSignal = !hideWindowTitle && !displayOnlyIcon;
-
-const args = `${yabaiPath} ${displaySkhdMode} ${disableSignals} ${enableTitleChangedSignal}`;
-// const command = `${shell} simple-bar/lib/scripts/init.sh ${args}`;
-const command = `whoami`;
+const args = `${aerospacePath}`;
+const command = `${shell} simple-bar/lib/scripts/init.sh ${args}`;
 
 Utils.injectStyles("simple-bar-index-styles", [
   Variables.styles,
@@ -85,18 +78,15 @@ function render({ output, error }) {
     return <Error.Component type="error" classes={baseClasses} />;
   }
   if (!output) return <Error.Component type="noOutput" classes={baseClasses} />;
-  if (Utils.cleanupOutput(output) === "yabaiError") {
-    return <Error.Component type="yabaiError" classes={baseClasses} />;
+  if (Utils.cleanupOutput(output) === "aerospaceError") {
+    return <Error.Component type="aerospaceError" classes={baseClasses} />;
   }
 
-  // const data = Utils.parseJson(output);
-  // if (!data) return <Error.Component type="noData" classes={baseClasses} />;
-  //
+  const data = Utils.parseJson(output);
+  if (!data) return <Error.Component type="noData" classes={baseClasses} />;
 
-  // TODO: extract spaces info from aerospace
-  const data = {}
 
-  const { displays, skhdMode, spaces, windows } = data;
+  const { displays, spaces, currentWindow } = data;
 
   Utils.handleBarFocus();
 
@@ -107,14 +97,14 @@ function render({ output, error }) {
     >
       <div className={baseClasses}>
         <SideIcon.Component />
-        {/* <YabaiContextProvider */}
-        {/*   spaces={spaces} */}
-        {/*   windows={windows} */}
-        {/*   skhdMode={skhdMode} */}
-        {/* > */}
-        {/*   <Spaces.Component /> */}
-        {/*   <Process.Component /> */}
-        {/* </YabaiContextProvider> */}
+        <YabaiContextProvider
+          spaces={spaces}
+          windows={[]}
+          skhdMode={""}
+        >
+          <Spaces.Component />
+          <Process.Component />
+        </YabaiContextProvider>
         <Settings.Wrapper />
         <div className="simple-bar__data">
           <UserWidgets />

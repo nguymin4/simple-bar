@@ -3,7 +3,6 @@ import * as AppIcons from "../../app-icons";
 import { SuspenseIcon } from "../icons/icon.jsx";
 import { useSimpleBarContext } from "../simple-bar-context.jsx";
 import * as Utils from "../../utils";
-import * as Yabai from "../../yabai";
 
 const { React } = Uebersicht;
 
@@ -42,7 +41,6 @@ export default function Window({ window }) {
 
   const onClick = (e) => {
     !displayOnlyCurrent && Utils.clickEffect(e);
-    Yabai.focusWindow(id);
   };
 
   const onMouseEnter = () => {
