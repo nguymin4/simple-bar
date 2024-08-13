@@ -31,11 +31,8 @@ export default function Space({
     index,
     label,
     "has-focus": hasFocus,
-    focused: __legacyHasFocus,
     "is-visible": isVisible,
-    visible: __legacyIsVisible,
     "is-native-fullscreen": isNativeFullscreen,
-    "native-fullscreen": __legacyIsNativeFullscreen,
     type,
   } = space;
   const [spaceLabel, setSpaceLabel] = React.useState(
@@ -71,7 +68,7 @@ export default function Space({
       labelRef.current?.select();
       return;
     }
-    if (hasFocus || __legacyHasFocus) return;
+    if (hasFocus) return;
     Utils.switchSpace(currentSpaceIndex, index);
     Utils.clickEffect(e);
   };
@@ -98,17 +95,17 @@ export default function Space({
   const allApps = [...apps, ...stickyWindows];
 
   const hidden =
-    !(hasFocus ?? __legacyHasFocus) &&
-    !(isVisible ?? __legacyHasFocus) &&
+    !hasFocus &&
+    !isVisible &&
     !allApps.length &&
     spacesDisplay.hideEmptySpaces;
 
   if (hidden) return null;
 
   const classes = Utils.classNames(`space space--${type}`, {
-    "space--focused": hasFocus ?? __legacyHasFocus,
-    "space--visible": isVisible ?? __legacyIsVisible,
-    "space--fullscreen": isNativeFullscreen ?? __legacyIsNativeFullscreen,
+    "space--focused": hasFocus,
+    "space--visible": isVisible,
+    "space--fullscreen": isNativeFullscreen,
     "space--hovered": hovered,
     "space--no-delay": noDelay,
     "space--empty": allApps.length,

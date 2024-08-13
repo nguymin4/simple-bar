@@ -26,8 +26,8 @@ export default function Stickies({ display }) {
   });
 
   const notMinimizedStikies = apps.filter((app) => {
-    const { "is-minimized": isMinimized, minimized: __legacyIsMinimized } = app;
-    return !(isMinimized || __legacyIsMinimized);
+    const { "is-minimized": isMinimized } = app;
+    return !isMinimized;
   });
 
   if (!notMinimizedStikies?.length) return null;
