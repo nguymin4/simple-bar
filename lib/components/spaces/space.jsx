@@ -3,7 +3,6 @@ import OpenedApps from "./opened-apps.jsx";
 import { useYabaiContext } from "../yabai-context.jsx";
 import { useSimpleBarContext } from "../simple-bar-context.jsx";
 import * as Utils from "../../utils";
-import * as Yabai from "../../yabai";
 
 const { React } = Uebersicht;
 
@@ -84,7 +83,6 @@ export default function Space({
     if (!editable) return;
     const newLabel = e.target.value;
     setSpaceLabel(newLabel);
-    Yabai.renameSpace(index, newLabel);
   };
 
   const { nonStickyWindows: apps, stickyWindows } =
