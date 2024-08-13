@@ -20,20 +20,13 @@ export default function Window({ window }) {
   const {
     "stack-index": stackIndex,
     "is-minimized": isMinimized,
-    minimized: __legacyIsMinimized,
     "has-focus": hasFocus,
-    focused: __legacyHasFocus,
     app: appName,
     title,
     id,
   } = window;
 
-  const isFocused = hasFocus ?? __legacyHasFocus;
-
-  if (
-    (isMinimized ?? __legacyIsMinimized) ||
-    (displayOnlyCurrent && !isFocused)
-  ) {
+  if (isMinimized || (displayOnlyCurrent && !hasFocus)) {
     return null;
   }
 
@@ -53,7 +46,7 @@ export default function Window({ window }) {
 
   const classes = Utils.classNames("process__window", {
     "process__window--expanded": expandAllProcesses,
-    "process__window--focused": !displayOnlyCurrent && isFocused,
+    "process__window--focused": !displayOnlyCurrent && hasFocus,
     "process__window--only-current": displayOnlyCurrent,
     "process__window--only-icon": displayOnlyIcon,
   });
@@ -64,7 +57,7 @@ export default function Window({ window }) {
 
   const showStackIndex =
     displayStackIndex &&
-    (!displayOnlyCurrentStack || isFocused) &&
+    (!displayOnlyCurrentStack || hasFocus) &&
     stackIndex > 0;
 
   return (

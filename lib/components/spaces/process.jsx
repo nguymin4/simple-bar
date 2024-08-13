@@ -35,10 +35,9 @@ export const Component = React.memo(() => {
   const currentSpace = spaces.find((space) => {
     const {
       "is-visible": isVisible,
-      visible: __legacyIsVisible,
       display,
     } = space;
-    return (isVisible ?? __legacyIsVisible) && display === displayIndex;
+    return isVisible && display === displayIndex;
   });
 
   const { stickyWindows, nonStickyWindows } = Utils.stickyWindowWorkaround({

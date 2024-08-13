@@ -35,8 +35,8 @@ export const Component = React.memo(() => {
 
   const { index: currentSpaceIndex } =
     spaces.find((space) => {
-      const { "has-focus": hasFocus, focused: __legacyHasFocus } = space;
-      return hasFocus ?? __legacyHasFocus;
+      const { "has-focus": hasFocus } = space;
+      return hasFocus;
     }) || {};
 
   return displays.map((display, i) => {
