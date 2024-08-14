@@ -1,8 +1,7 @@
 import * as Uebersicht from "uebersicht";
 import { useSimpleBarContext } from "./simple-bar-context.jsx";
 import useServerSocket from "../hooks/use-server-socket.js";
-import * as Yabai from "../yabai.js";
-import * as Skhd from "../skhd.js";
+// import * as Skhd from "../skhd.js";
 
 const { React } = Uebersicht;
 
@@ -45,23 +44,23 @@ function YabaiContextProvider({ spaces, windows, skhdMode, children }) {
   };
 
   const getSpaces = async () => {
-    const newSpaces = await Yabai.getSpaces();
-    setYabaiSpaces(newSpaces);
+    // const newSpaces = await Yabai.getSpaces();
+    // setYabaiSpaces(newSpaces);
   };
 
   const getWindows = async () => {
-    const newWindows = await Yabai.getWindows();
-    setYabaiWindows(newWindows);
+    // const newWindows = await Yabai.getWindows();
+    // setYabaiWindows(newWindows);
   };
 
   const getDisplays = async () => {
-    const newDisplays = await Yabai.getDisplays();
-    setYabaiDisplays(newDisplays);
+    // const newDisplays = await Yabai.getDisplays();
+    // setYabaiDisplays(newDisplays);
   };
 
   const getSkhdMode = async () => {
-    const newSkhdMode = await Skhd.getMode();
-    setCurrentSkhdMode(newSkhdMode);
+    // const newSkhdMode = await Skhd.getMode();
+    // setCurrentSkhdMode(newSkhdMode);
   };
 
   useServerSocket("spaces", serverEnabled, getSpaces, resetSpaces);
