@@ -23,7 +23,6 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 **Test Configuration**:
 
 - OS version [e.g. Sonoma 14.1.1]
-- Yabai version [e.g. yabai-v6.0.1] (output of `yabai --version`)
 - Übersicht version [e.g. Version 1.6 (82)]
 
 # Checklist:
