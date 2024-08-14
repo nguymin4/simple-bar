@@ -2,7 +2,6 @@ import * as Error from "./lib/components/error.jsx";
 import SimpleBarContextProvider from "./lib/components/simple-bar-context.jsx";
 import UserWidgets from "./lib/components/data/user-widgets.jsx";
 import * as SpaceV2 from "./lib/components/spacesV2/spaces.jsx";
-import * as Process from "./lib/components/spaces/process.jsx";
 import * as Variables from "./lib/styles/core/variables";
 import * as Base from "./lib/styles/core/base";
 import * as Time from "./lib/components/data/time.jsx";
@@ -37,7 +36,6 @@ Utils.injectStyles("simple-bar-index-styles", [
   Variables.styles,
   Base.styles,
   SpaceV2.styles,
-  Process.styles,
   Settings.styles,
   DataWidget.styles,
   DateDisplay.styles,

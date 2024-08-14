@@ -25,7 +25,6 @@ If applicable, add screenshots to help explain your problem.
 **Information (please complete the following information):**
 
 - OS version [e.g. Sonoma 14.1.1]
-- Yabai version [e.g. yabai-v6.0.1] (output of `yabai --version`)
 - Übersicht version [e.g. Version 1.6 (82)]
 
 **Additional context**
