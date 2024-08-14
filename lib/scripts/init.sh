@@ -1,26 +1,26 @@
 aerospace_path=$1
 
-pgrep -x aerospace > /dev/null
+pgrep -x AeroSpace > /dev/null
 
 if [ $? -eq 1 ]; then
   echo "aerospaceError"
   exit 0
 fi
 
-current_window=$($aerospace_path list-windows --focused --format '{"id": "%{window-id}", "windowTitle": "%{app-name}"}')
-if [ -z "$current_window" ]; then
-  current_window="null"
-fi
+current_space=$($aerospace_path list-workspaces --focused | head -n1)
 
-displays=$($aerospace_path list-monitors --format '{"id": "%{monitor-id}"}')
-skhd_mode="{}"
-
+# shellcheck disable=SC2005
 echo "$(cat <<-EOF
   {
-    "spaces": "[1, 2, 3, 4, 5, 6, 7, 8, 9]",
-    "currentWindow": $current_window,
-    "displays": $displays,
-    "skhdMode": $skhd_mode
+    "spaces": [
+      { "id": "1", "label": "1: " },
+      { "id": "2", "label": "2: " },
+      { "id": "3", "label": "3: " },
+      { "id": "4", "label": "4: " },
+      { "id": "5", "label": "5: 󰊻" },
+      { "id": "6", "label": "6: 󰴢" }
+    ],
+    "currentSpace": "$current_space"
   }
 EOF
 )" | \

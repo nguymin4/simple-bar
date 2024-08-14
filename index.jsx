@@ -1,8 +1,7 @@
 import * as Error from "./lib/components/error.jsx";
 import SimpleBarContextProvider from "./lib/components/simple-bar-context.jsx";
-import YabaiContextProvider from "./lib/components/yabai-context.jsx";
 import UserWidgets from "./lib/components/data/user-widgets.jsx";
-import * as Spaces from "./lib/components/spaces/spaces.jsx";
+import * as SpaceV2 from "./lib/components/spacesV2/spaces.jsx";
 import * as Process from "./lib/components/spaces/process.jsx";
 import * as Variables from "./lib/styles/core/variables";
 import * as Base from "./lib/styles/core/base";
@@ -37,7 +36,7 @@ const command = `${shell} simple-bar/lib/scripts/init.sh ${args}`;
 Utils.injectStyles("simple-bar-index-styles", [
   Variables.styles,
   Base.styles,
-  Spaces.styles,
+  SpaceV2.styles,
   Process.styles,
   Settings.styles,
   DataWidget.styles,
@@ -73,8 +72,6 @@ function render({ output, error }) {
   });
 
   if (error) {
-    // eslint-disable-next-line no-console
-    console.error("Error in spaces.jsx", error);
     return <Error.Component type="error" classes={baseClasses} />;
   }
   if (!output) return <Error.Component type="noOutput" classes={baseClasses} />;
@@ -85,26 +82,20 @@ function render({ output, error }) {
   const data = Utils.parseJson(output);
   if (!data) return <Error.Component type="noData" classes={baseClasses} />;
 
-
-  const { displays, spaces, currentWindow } = data;
+  let { spaces, currentSpace } = data;
 
   Utils.handleBarFocus();
 
   return (
     <SimpleBarContextProvider
       initialSettings={settings}
-      displays={displays}
     >
       <div className={baseClasses}>
         <SideIcon.Component />
-        <YabaiContextProvider
+        <SpaceV2.Component
           spaces={spaces}
-          windows={[]}
-          skhdMode={""}
-        >
-          <Spaces.Component />
-          <Process.Component />
-        </YabaiContextProvider>
+          currentSpace={currentSpace}
+        />
         <Settings.Wrapper />
         <div className="simple-bar__data">
           <UserWidgets />
