@@ -1,18 +1,17 @@
 import * as Uebersicht from "uebersicht";
-import { useSimpleBarContext } from "../simple-bar-context.jsx";
+import OpenedApps from "./opened-apps.jsx";
+import * as Aerospace from "../../aerospace";
 import * as Utils from "../../utils";
 
 const { React } = Uebersicht;
 
-export default function Space({ space, focused }) {
-  const { settings } = useSimpleBarContext();
-  const { aerospacePath } = settings.global;
-  const { id, label } = space
-
-  const onClick = () => {
-    Uebersicht.run(`${aerospacePath} workspace ${id}`);
+export default function Space({ space, focused, apps }) {
+  if (!apps && !focused) {
+    return null
   }
 
+  const onClick = () => Aerospace.goToSpace(space)
+  
   const classes = Utils.classNames('space', {
     "space--focused": focused,
   });
@@ -27,10 +26,11 @@ export default function Space({ space, focused }) {
           <input
             type="text"
             className="space__label"
-            value={label}
-            style={{ width: `${label.length}ch` }}
+            value={space}
+            style={{ width: `${space.toString().length}ch` }}
             readOnly
           />
+          <OpenedApps apps={apps} />
         </button>
       </div>
     </React.Fragment>

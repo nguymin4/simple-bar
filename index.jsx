@@ -69,9 +69,7 @@ function render({ output, error }) {
     "simple-bar--no-shadow": true,
   });
 
-  if (error) {
-    return <Error.Component type="error" classes={baseClasses} />;
-  }
+  if (error) return <Error.Component type="error" classes={baseClasses} />;
   if (!output) return <Error.Component type="noOutput" classes={baseClasses} />;
   if (Utils.cleanupOutput(output) === "aerospaceError") {
     return <Error.Component type="aerospaceError" classes={baseClasses} />;
@@ -79,8 +77,6 @@ function render({ output, error }) {
 
   const data = Utils.parseJson(output);
   if (!data) return <Error.Component type="noData" classes={baseClasses} />;
-
-  let { spaces, currentSpace } = data;
 
   Utils.handleBarFocus();
 
@@ -91,8 +87,8 @@ function render({ output, error }) {
       <div className={baseClasses}>
         <SideIcon.Component />
         <SpaceV2.Component
-          spaces={spaces}
-          currentSpace={currentSpace}
+          spaces={data.spaces}
+          currentSpace={data.currentSpace}
         />
         <Settings.Wrapper />
         <div className="simple-bar__data">
