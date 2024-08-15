@@ -114,8 +114,6 @@ function render({ output, error }) {
   const data = Utils.parseJson(cleanedUpOutput);
   if (!data) return <Error.Component type="noData" classes={baseClasses} />;
 
-  const { spaces, currentSpace } = data;
-
   // Handle bar focus ring on click
   Utils.handleBarFocus();
 
@@ -127,8 +125,9 @@ function render({ output, error }) {
       <div className={baseClasses}>
         <SideIcon.Component />
         <SpaceV2.Component
-          spaces={spaces}
-          currentSpace={currentSpace}
+          spaces={data.spaces}
+          currentSpace={data.currentSpace}
+          focusedWindowId={data.focusedWindow.windowId}
         />
         <Settings.Wrapper />
         <div className="simple-bar__data">
