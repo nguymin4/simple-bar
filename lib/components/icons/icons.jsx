@@ -163,6 +163,9 @@ export const MicrosoftEdge = React.lazy(
 export const MicrosoftExcel = React.lazy(
   () => import("./library/microsoft-excel.jsx"),
 );
+export const MicrosoftOneNote = React.lazy(
+  () => import("./library/microsoft-onenote.jsx"),
+);
 export const MicrosoftOutlook = React.lazy(
   () => import("./library/microsoft-outlook.jsx"),
 );
