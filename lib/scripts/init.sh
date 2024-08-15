@@ -7,20 +7,14 @@ if [ $? -eq 1 ]; then
   exit 0
 fi
 
+spaces=$($aerospace_path list-workspaces --all | tr '\n' ',' | xargs)
 current_space=$($aerospace_path list-workspaces --focused | head -n1)
 
 # shellcheck disable=SC2005
 echo "$(cat <<-EOF
   {
-    "spaces": [
-      { "id": "1", "label": "1: " },
-      { "id": "2", "label": "2: " },
-      { "id": "3", "label": "3: " },
-      { "id": "4", "label": "4: " },
-      { "id": "5", "label": "5: 󰊻" },
-      { "id": "6", "label": "6: 󰴢" }
-    ],
-    "currentSpace": "$current_space"
+    "spaces": [${spaces%?}],
+    "currentSpace": $current_space
   }
 EOF
 )" | \
