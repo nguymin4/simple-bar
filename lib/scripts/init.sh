@@ -1,4 +1,4 @@
-aerospace_path=$1
+aerospace_path=${1:-'/opt/homebrew/bin/aerospace'}
 
 pgrep -x AeroSpace > /dev/null
 
@@ -9,12 +9,16 @@ fi
 
 spaces=$($aerospace_path list-workspaces --all | tr '\n' ',' | xargs)
 current_space=$($aerospace_path list-workspaces --focused | head -n1)
+focused_window=$($aerospace_path list-windows --focused \
+  --format '{"windowId": "%{window-id}", "appName": "%{app-name}", "workspace": %{workspace} }' 2>/dev/null
+)
 
 # shellcheck disable=SC2005
 echo "$(cat <<-EOF
   {
     "spaces": [${spaces%?}],
-    "currentSpace": $current_space
+    "currentSpace": $current_space,
+    "focusedWindow": ${focused_window:-"{}"}
   }
 EOF
 )" | \

@@ -5,18 +5,15 @@ import * as Utils from "../../utils";
 
 const { React } = Uebersicht;
 
-export default function OpenedApps({ apps }) {
-  if (!apps || !apps.length) {
+export default function OpenedApps({ windows, focusedWindowId }) {
+  if (!windows || !windows.length) {
     return null;
   }
 
-  return apps.map((app) => {
-    const { appName, windowId, focused } = app;
-
+  return windows.map(({ appName, windowId }) => {
     const Icon = AppIcons.apps[appName] || AppIcons.apps.Default;
-
     const classes = Utils.classNames("space__icon", {
-      "space__icon--focused": focused,
+      "space__icon--focused": windowId == focusedWindowId,
     });
 
     return (

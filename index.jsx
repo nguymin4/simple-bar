@@ -91,6 +91,7 @@ function render({ output, error }) {
         <SpaceV2.Component
           spaces={data.spaces}
           currentSpace={data.currentSpace}
+          focusedWindowId={data.focusedWindow.windowId}
         />
         <Settings.Wrapper />
         <div className="simple-bar__data">
