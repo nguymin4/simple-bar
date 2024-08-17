@@ -5,16 +5,13 @@ import * as Utils from "../../utils";
 
 const { React } = Uebersicht;
 
-export default function Space({ space, focused, apps }) {
-  if (!apps && !focused) {
+const Component = React.memo(({ space, focused, focusedWindowId, windows }) => {
+  const onClick = React.useCallback(() => Aerospace.goToSpace(space), [space])
+  const classes = Utils.classNames('space', { "space--focused": focused });
+
+  if (!windows?.length && !focused) {
     return null
   }
-
-  const onClick = () => Aerospace.goToSpace(space)
-  
-  const classes = Utils.classNames('space', {
-    "space--focused": focused,
-  });
 
   return (
     <React.Fragment>
@@ -30,9 +27,32 @@ export default function Space({ space, focused, apps }) {
             style={{ width: `${space.toString().length}ch` }}
             readOnly
           />
-          <OpenedApps apps={apps} />
+          <OpenedApps windows={windows} focusedWindowId={focusedWindowId} />
         </button>
       </div>
     </React.Fragment>
   )
+}, arePropsEquals)
+
+function arePropsEquals(prevProps, nextProps) {
+  if (prevProps.space !== nextProps.space
+    || prevProps.focused !== nextProps.focused
+    || prevProps.focusedWindowId !== nextProps.focusedWindowId
+    || prevProps.windows?.length !== nextProps.windows?.length
+  ) {
+    return false
+  }
+
+  const prevWindows = prevProps.windows;
+  const nextWindows = nextProps.windows;
+  for (let i = 0; i < prevWindows.length; i++) {
+    if (prevWindows[i].windowId != nextWindows[i].windowId) {
+      return false
+    }
+  }
+  return true
 }
+
+Component.displayName = "Space"
+
+export default Component
