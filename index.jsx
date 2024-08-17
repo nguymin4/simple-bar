@@ -7,6 +7,7 @@ import UserWidgets from "./lib/components/data/user-widgets.jsx";
 import * as SpaceV2 from "./lib/components/spacesV2/spaces.jsx";
 import * as Variables from "./lib/styles/core/variables";
 import * as Base from "./lib/styles/core/base";
+import * as AppBadges from "./lib/components/data/app-badges.jsx";
 import * as Time from "./lib/components/data/time.jsx";
 import * as DateDisplay from "./lib/components/data/date-display.jsx";
 import * as Netstats from "./lib/components/data/netstats.jsx";
@@ -57,6 +58,7 @@ Utils.injectStyles("simple-bar-index-styles", [
   Settings.styles,
   DataWidget.styles,
   DateDisplay.styles,
+  AppBadges.styles,
   Time.styles,
   Netstats.styles,
   Cpu.styles,
@@ -132,6 +134,7 @@ function render({ output, error }) {
         <Settings.Wrapper />
         <div className="simple-bar__data">
           <UserWidgets />
+          <AppBadges.Widget />
           <Mpd.Widget />
           <Netstats.Widget />
           <Cpu.Widget />
