@@ -114,7 +114,7 @@ export const Widget = React.memo(() => {
     const clampedValue = Math.min(Math.max(value, 0), 100)
     setVolume(clampedValue)
   }
-  const formattedVolume = `${volume.toString().padStart(2, "0")}%`;
+  const formattedVolume = `${volume.toString()}%`;
 
   const classes = Utils.classNames("sound", {
     "sound--dragging": dragging,
