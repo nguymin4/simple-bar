@@ -144,6 +144,7 @@ function render({ output, error }) {
           <Sound.Widget />
           <Wifi.Widget />
           <Keyboard.Widget />
+          <Battery.Widget />
           <DateDisplay.Widget />
           <Time.Widget />
         </div>
