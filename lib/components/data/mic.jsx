@@ -77,9 +77,15 @@ export const Widget = React.memo(() => {
   };
   const onMouseDown = () => setDragging(true);
   const onMouseUp = () => setDragging(false);
+  const onWheel = (event) => {
+    const sign = -Math.sign(event.deltaY)
+    const value = volume + sign * 5
+    const clampedValue = Math.min(Math.max(value, 0), 100)
+    setVolume(clampedValue)
+  }
 
   const fillerWidth = volume || 0;
-  const formattedVolume = `${volume.toString().padStart(2, "0")}%`;
+  const formattedVolume = `${volume.toString()}%`;
 
   const classes = Utils.classNames("mic", {
     "mic--dragging": dragging,
@@ -93,7 +99,7 @@ export const Widget = React.memo(() => {
         </SuspenseIcon>
         <span className="mic__value">{formattedVolume}</span>
       </div>
-      <div className="mic__slider-container">
+      <div className="mic__slider-container" onWheel={onWheel}>
         <input
           type="range"
           min="0"
