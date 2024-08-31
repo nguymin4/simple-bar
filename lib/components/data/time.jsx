@@ -49,8 +49,14 @@ export const Widget = React.memo(() => {
 
   const getTime = React.useCallback(() => {
     if (!visible) return;
-    const time = new Date().toLocaleString("en-UK", options);
-    setState({ time });
+    const now = new Date()
+    const date = now.toLocaleDateString("en-UK", {
+      day: "numeric",
+      month: "short",
+      weekday: "short",
+    });
+    const time = now.toLocaleTimeString("en-UK", options);
+    setState({ time: `${date} ${time}` });
     setLoading(false);
   }, [visible, options]);
 
@@ -70,7 +76,7 @@ export const Widget = React.memo(() => {
   const fillerWidth = (100 - (100 * diff) / range) / 100;
 
   return (
-    <DataWidget.Widget classes="time" Icon={Icons.Clock} disableSlider>
+    <DataWidget.Widget classes="time" Icon={Icons.Date} disableSlider>
       {time}
       {dayProgress && (
         <div
