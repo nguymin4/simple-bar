@@ -41,7 +41,7 @@ export const Widget = React.memo(() => {
     const keyboard = await Uebersicht.run(
       `defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | awk '/KeyboardLayout Name/ {print $4}'`
     );
-    const layout = Utils.cleanupOutput(keyboard).replace(";", "");
+    const layout = Utils.cleanupOutput(keyboard).replace(/[;"]/g, "");
     if (layout.length) {
       setState({ keyboard: layout });
       setLoading(false);
