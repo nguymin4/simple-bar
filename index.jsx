@@ -103,9 +103,8 @@ function render({ output, error }) {
           <Mic.Widget />
           <Sound.Widget />
           <Wifi.Widget />
-          <Keyboard.Widget />
           <Battery.Widget />
-          <DateDisplay.Widget />
+          <Keyboard.Widget />
           <Time.Widget />
         </div>
       </div>
