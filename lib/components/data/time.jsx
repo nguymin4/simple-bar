@@ -67,8 +67,14 @@ export const Widget = React.memo(() => {
    */
   const getTime = React.useCallback(() => {
     if (!visible) return;
-    const time = new Date().toLocaleString("en-UK", options);
-    setState({ time });
+    const now = new Date()
+    const date = now.toLocaleDateString("en-UK", {
+      day: "numeric",
+      month: "short",
+      weekday: "short",
+    });
+    const time = now.toLocaleTimeString("en-UK", options);
+    setState({ date, time });
     setLoading(false);
   }, [visible, options]);
 
@@ -79,7 +85,7 @@ export const Widget = React.memo(() => {
 
   if (loading) return <DataWidgetLoader.Widget className="time" />;
   if (!state) return null;
-  const { time } = state;
+  const { date, time } = state;
 
   // Calculate the progress of the current day
   const [dayStart, dayEnd] = [new Date(), new Date()];
@@ -104,7 +110,7 @@ export const Widget = React.memo(() => {
       Icon={showIcon ? TimeIcon : null}
       disableSlider
     >
-      {time}
+      {date} {time}
       {dayProgress && (
         <div
           className="time__filler"
