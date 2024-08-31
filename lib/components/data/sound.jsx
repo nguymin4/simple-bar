@@ -108,7 +108,12 @@ export const Widget = React.memo(() => {
 
   const onMouseDown = () => setDragging(true);
   const onMouseUp = () => setDragging(false);
-
+  const onWheel = (event) => {
+    const sign = -Math.sign(event.deltaY)
+    const value = volume + sign * 5
+    const clampedValue = Math.min(Math.max(value, 0), 100)
+    setVolume(clampedValue)
+  }
   const formattedVolume = `${volume.toString().padStart(2, "0")}%`;
 
   const classes = Utils.classNames("sound", {
@@ -125,7 +130,7 @@ export const Widget = React.memo(() => {
         )}
         <span className="sound__value">{formattedVolume}</span>
       </div>
-      <div className="sound__slider-container">
+      <div className="sound__slider-container" onWheel={onWheel}>
         <input
           type="range"
           min="0"
