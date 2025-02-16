@@ -19,7 +19,7 @@ Among the principal features of `simple-bar`, you'll find:
 
 ## Preview
 
-![image](./images/preview.png)
+![image](./images/preview-1.png)
 
 ## Installation
 
