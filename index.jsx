@@ -9,17 +9,12 @@ import * as Variables from "./lib/styles/core/variables";
 import * as Base from "./lib/styles/core/base";
 import * as AppBadges from "./lib/components/data/app-badges.jsx";
 import * as Time from "./lib/components/data/time.jsx";
-import * as DateDisplay from "./lib/components/data/date-display.jsx";
-import * as Netstats from "./lib/components/data/netstats.jsx";
 import * as Cpu from "./lib/components/data/cpu.jsx";
-import * as Gpu from "./lib/components/data/gpu.jsx";
-import * as Memory from "./lib/components/data/memory.jsx";
 import * as Battery from "./lib/components/data/battery.jsx";
 import * as Sound from "./lib/components/data/sound.jsx";
 import * as Mic from "./lib/components/data/mic.jsx";
 import * as Wifi from "./lib/components/data/wifi.jsx";
 import * as Keyboard from "./lib/components/data/keyboard.jsx";
-import * as Mpd from "./lib/components/data/mpd.jsx";
 import * as Graph from "./lib/components/data/graph.jsx";
 import * as DataWidgetLoader from "./lib/components/data/data-widget-loader.jsx";
 import * as DataWidget from "./lib/components/data/data-widget.jsx";
@@ -57,20 +52,14 @@ Utils.injectStyles("simple-bar-index-styles", [
   SpaceV2.styles,
   Settings.styles,
   DataWidget.styles,
-  DateDisplay.styles,
   AppBadges.styles,
   Time.styles,
-  Netstats.styles,
   Cpu.styles,
-  Gpu.styles,
-  Memory.styles,
-  Crypto.styles,
   Battery.styles,
   Wifi.styles,
   Keyboard.styles,
   Mic.styles,
   Sound.styles,
-  Mpd.styles,
   Graph.styles,
   DataWidgetLoader.styles,
   settings.customStyles.styles,
@@ -135,11 +124,7 @@ function render({ output, error }) {
         <div className="simple-bar__data">
           <UserWidgets />
           <AppBadges.Widget />
-          <Mpd.Widget />
-          <Netstats.Widget />
           <Cpu.Widget />
-          <Gpu.Widget />
-          <Memory.Widget />
           <Mic.Widget />
           <Sound.Widget />
           <Wifi.Widget />
