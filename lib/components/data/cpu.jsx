@@ -118,9 +118,10 @@ export const Widget = React.memo(() => {
     );
   }
 
+  const alertClass = usage > 80 ? "cpu--high" : ""
   return (
     <DataWidget.Widget
-      classes="cpu"
+      classes={`cpu ${alertClass}`}
       Icon={showIcon ? Icons.CPU : null}
       onClick={onClick}
     >
